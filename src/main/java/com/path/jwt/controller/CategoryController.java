@@ -84,10 +84,11 @@ List<Category> result = categoryRepository.findByName(name);
 	@DeleteMapping("/category/{id}")
 	public ResponseEntity<Object> delete(@PathVariable Long id)
 	{
-		//categoryService.delete(id);
+		
 		
 		Optional<Category> categoryOptional = categoryRepository.findById(id);
 		if (categoryOptional.isPresent()) {
+			categoryService.delete(id);
 			return new ResponseEntity<>(Response.success(), HttpStatus.OK);
 			
 		} else {
